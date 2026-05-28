@@ -3,14 +3,14 @@ package it.unicam.cs.mpgc.rpg130718.model;
 public class Mostro {
     private String nome;
     private int puntiVita;
-    private int livello;
+    private int danno;
     private CategoriaMostro categoria;
     private Debolezza debolezza;
 
-    public Mostro(String nome, int puntiVita, int livello, CategoriaMostro categoria, Debolezza debolezza) {
+    public Mostro(String nome, int puntiVita, int danno, CategoriaMostro categoria, Debolezza debolezza) {
         this.nome = nome;
         this.puntiVita = puntiVita;
-        this.livello = livello;
+        this.danno = danno;
         this.categoria = categoria;
         this.debolezza = debolezza;
     }
@@ -23,8 +23,8 @@ public class Mostro {
         return puntiVita;
     }
 
-    public int getLivello() {
-        return livello;
+    public int getDanno() {
+        return danno;
     }
 
     public CategoriaMostro getCategoria() {
@@ -35,10 +35,10 @@ public class Mostro {
         return debolezza;
     }
 
-    public void subisciDanno(int danno) {
-        this.puntiVita -= danno;
+    public void subisciDanno(int dannoRicevuto) {
+        this.puntiVita -= dannoRicevuto;
         if (this.puntiVita < 0) {
-            this.puntiVita = 0; // Evitiamo punti vita negativi
+            this.puntiVita = 0;
         }
     }
 

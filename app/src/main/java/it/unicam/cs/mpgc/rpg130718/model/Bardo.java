@@ -2,12 +2,18 @@ package it.unicam.cs.mpgc.rpg130718.model;
 
 public class Bardo extends Esploratore {
 
-    public Bardo(String nome, int puntiVita) {
-        super(nome, puntiVita);
+    public Bardo(String nome) {
+        super(nome, 80, 15);
     }
 
     @Override
-    public void eseguiAzioneSpeciale() {
-        System.out.println(getNome() + " lancia una canzone di Cura! Una melodia soave travolge l'area.");
+    public void entraInBattaglia(Mostro avversario) {
+        System.out.println(getNome() + " intona un Canto Soave! Si curerà ad ogni attacco.");
+    }
+
+    @Override
+    public int eseguiAttacco() {
+        cura(5);
+        return getDannoBase();
     }
 }

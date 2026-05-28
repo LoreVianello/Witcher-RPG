@@ -3,12 +3,15 @@ package it.unicam.cs.mpgc.rpg130718.model;
 public abstract class Esploratore {
     private String nome;
     private int puntiVita;
+    private int puntiVitaMax;
+    private int dannoBase;
     private Bestiario bestiario;
-    // L'inventario lo aggiungeremo in un secondo momento per procedere per gradi!
 
-    public Esploratore(String nome, int puntiVita) {
+    public Esploratore(String nome, int puntiVitaMax, int dannoBase) {
         this.nome = nome;
-        this.puntiVita = puntiVita;
+        this.puntiVitaMax = puntiVitaMax;
+        this.puntiVita = puntiVitaMax;
+        this.dannoBase = dannoBase;
         this.bestiario = new Bestiario();
     }
 
@@ -20,11 +23,22 @@ public abstract class Esploratore {
         return puntiVita;
     }
 
+    public int getPuntiVitaMax() {
+        return puntiVitaMax;
+    }
+
+    public int getDannoBase() {
+        return dannoBase;
+    }
+
     public Bestiario getBestiario() {
         return bestiario;
     }
 
-    // Metodo per gestire i danni subiti
+    public abstract void entraInBattaglia(Mostro avversario);
+
+    public abstract int eseguiAttacco();
+
     public void subisciDanno(int danno) {
         this.puntiVita -= danno;
         if (this.puntiVita < 0) {
@@ -32,8 +46,13 @@ public abstract class Esploratore {
         }
     }
 
-    // Metodo astratto per evitare controlli di tipo
-    public abstract void eseguiAzioneSpeciale();
+    // Metodo per curarsi senza mai superare il limite massimo
+    public void cura(int quantita) {
+        this.puntiVita += quantita;
+        if (this.puntiVita > this.puntiVitaMax) {
+            this.puntiVita = this.puntiVitaMax;
+        }
+    }
 
     public boolean isVivo() {
         return this.puntiVita > 0;
