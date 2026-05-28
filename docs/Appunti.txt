@@ -1,0 +1,35 @@
+Mostro
+- nome
+- puntiVita
+- livello
+- categoria enum
+- debolezza enum
+Scelta architetturale: Ho utilizzato delle Enum per Categoria e Debolezza per evitare il code smell
+'Primitive Obsession', garantendo la type safety ed evitando errori di battitura rispetto all'uso di semplici stringhe.
+Bestiario
+- mostriScoperti
++ cercaPerCategoria()
++ mostroSuccessivo()
++ mostroPrecedente()
+Esploratore (Classe Astratta o Interfaccia)
+- nome
+- puntiVita
+- inventario
+- bestiario
+--> Witcher, Strega, Bardo, Umano
+Oggetto
+- nome
+- effetto
+Inventario
++ aggiungiOggetto()
++ usaOggetto()
+DataLoader
++ caricaCatalogoGlobale()
++ salvaProgressi()
+Combattimento
+- esploratore
+- mostro
+
+Mostro e debolezza:
+Kikimora: SEGNO_YRDEN, Strige: OLIO_NECROFAGI Selkiemore: ARGENTO, Krallach: INCANTESIMO, Doppler: ARGENTO,
+Jinn: SEGNO_YRDEN

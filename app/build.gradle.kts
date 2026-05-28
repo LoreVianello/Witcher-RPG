@@ -8,6 +8,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    // Aggiungiamo il plugin ufficiale di JavaFX
+    id("org.openjfx.javafxplugin") version "0.1.0"
 }
 
 repositories {
@@ -32,9 +34,15 @@ java {
     }
 }
 
+// Configurazione di JavaFX
+javafx {
+    version = "24.0.1" // La versione indicata nelle slide del professore, o usa "25"
+    modules = listOf("javafx.controls", "javafx.fxml")
+}
+
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "it.unicam.cs.mpgc.rpg130718.Main"
 }
 
 tasks.named<Test>("test") {
