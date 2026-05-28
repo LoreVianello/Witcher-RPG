@@ -34,4 +34,8 @@ public abstract class Esploratore {
 
     // Metodo astratto per evitare controlli di tipo
     public abstract void eseguiAzioneSpeciale();
+
+    public boolean isVivo() {
+        return this.puntiVita > 0;
+    }
 }

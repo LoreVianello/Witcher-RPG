@@ -29,6 +29,9 @@ DataLoader
 Combattimento
 - esploratore
 - mostro
+Il combattimento si risolve in automatico. Se l'esploratore vince, la classe Combattimento si occupa autonomamente
+di iniettare il Mostro sconfitto nel Bestiario dell'eroe, garantendo la separazione delle responsabilità.
+In caso di sconfitta, è Game Over.
 
 Mostro e debolezza:
 Kikimora: SEGNO_YRDEN, Strige: OLIO_NECROFAGI Selkiemore: ARGENTO, Krallach: INCANTESIMO, Doppler: ARGENTO,

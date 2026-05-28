@@ -34,4 +34,15 @@ public class Mostro {
     public Debolezza getDebolezza() {
         return debolezza;
     }
+
+    public void subisciDanno(int danno) {
+        this.puntiVita -= danno;
+        if (this.puntiVita < 0) {
+            this.puntiVita = 0; // Evitiamo punti vita negativi
+        }
+    }
+
+    public boolean isVivo() {
+        return this.puntiVita > 0;
+    }
 }
