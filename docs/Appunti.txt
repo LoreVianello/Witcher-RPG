@@ -1,38 +1,70 @@
 Mostro
 - nome
 - puntiVita
-- livello
+- danno
 - categoria enum
 - debolezza enum
++ subisciDanno(int)
++ isVivo()
 Scelta architetturale: Ho utilizzato delle Enum per Categoria e Debolezza per evitare il code smell
 'Primitive Obsession', garantendo la type safety ed evitando errori di battitura rispetto all'uso di semplici stringhe.
+
 Bestiario
 - mostriScoperti
-+ cercaPerCategoria()
+- indiceCorrente
++ aggiungiMostro(Mostro)
++ getMostroCorrente()
 + mostroSuccessivo()
 + mostroPrecedente()
-Esploratore (Classe Astratta o Interfaccia)
++ cercaPerCategoria()
+
+Esploratore (Classe Astratta)
 - nome
 - puntiVita
+- puntiVitaMax
+- dannoBase
 - inventario
 - bestiario
---> Witcher, Strega, Bardo, Umano
++ entraInBattaglia(Mostro) [Astratto]
++ eseguiAttacco() [Astratto]
++ subisciDanno(int)
++ cura(int)
++ isVivo()
+--> Witcher (Yrden), Strega (Incantesimo), Bardo (Cura), Umano (Argento)
+Scelta architetturale (Polimorfismo e Open/Closed Principle): Ho delegato l'inizializzazione dello scontro e il calcolo
+dei danni a metodi astratti implementati dalle specifiche sottoclassi. Questo elimina la dipendenza da complessi
+costrutti if/else nella classe Combattimento per l'identificazione del tipo di eroe, mantenendo il codice pulito e il
+sistema facilmente estendibile con nuove classi.
+
 Oggetto
 - nome
 - effetto
+
 Inventario
 + aggiungiOggetto()
 + usaOggetto()
+
 DataLoader
 + caricaCatalogoGlobale()
 + salvaProgressi()
+
 Combattimento
 - esploratore
 - mostro
-Il combattimento si risolve in automatico. Se l'esploratore vince, la classe Combattimento si occupa autonomamente
-di iniettare il Mostro sconfitto nel Bestiario dell'eroe, garantendo la separazione delle responsabilità.
-In caso di sconfitta, è Game Over.
++ autoRisolvi()
+Scelta di Design e Flusso: Il combattimento si risolve in automatico sfruttando le chiamate polimorfiche.
+Se l'esploratore vince, la classe Combattimento si occupa autonomamente di iniettare il Mostro sconfitto nel Bestiario
+dell'eroe, garantendo la rigida separazione delle responsabilità. In caso di sconfitta, è Game Over.
+
+Flusso di Gioco (Game Loop)
+1. Inizio: Creazione o caricamento partita. Scelta della classe Esploratore.
+2. Esplorazione: Incontro casuale con un Mostro non ancora registrato. Possibilità di utilizzare un oggetto
+dall'inventario prima dello scontro.
+3. Combattimento: Risoluzione automatica. I danni subiti dall'Esploratore persistono tra gli scontri.
+4. Loot: In caso di vittoria, il Mostro viene registrato e l'eroe ottiene un oggetto casuale (Pozione o Olio).
+5. Intermezzo: Scelta tra proseguire, consultare il Bestiario o salvare i progressi (JSON).
+6. Condizione di Vittoria: Completamento del Bestiario sopravvivendo a tutti gli incontri.
 
 Mostro e debolezza:
-Kikimora: SEGNO_YRDEN, Strige: OLIO_NECROFAGI Selkiemore: ARGENTO, Krallach: INCANTESIMO, Doppler: ARGENTO,
+Kikimora: SEGNO_YRDEN, Strige: OLIO_NECROFAGI, Selkiemore: ARGENTO, Krallach: INCANTESIMO, Doppler: ARGENTO,
 Jinn: SEGNO_YRDEN
