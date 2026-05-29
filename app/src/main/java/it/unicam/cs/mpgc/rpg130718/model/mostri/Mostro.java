@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg130718.model;
+package it.unicam.cs.mpgc.rpg130718.model.mostri;
 
 public class Mostro {
     private String nome;

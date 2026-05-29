@@ -1,4 +1,9 @@
-package it.unicam.cs.mpgc.rpg130718.model;
+package it.unicam.cs.mpgc.rpg130718.model.esploratori;
+
+import it.unicam.cs.mpgc.rpg130718.model.oggetti.Inventario;
+import it.unicam.cs.mpgc.rpg130718.model.oggetti.Oggetto;
+import it.unicam.cs.mpgc.rpg130718.model.mostri.Bestiario;
+import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
 
 public abstract class Esploratore {
     private String nome;

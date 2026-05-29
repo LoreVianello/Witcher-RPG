@@ -1,4 +1,6 @@
-package it.unicam.cs.mpgc.rpg130718.model;
+package it.unicam.cs.mpgc.rpg130718.model.esploratori;
+
+import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
 
 public class Bardo extends Esploratore {
 

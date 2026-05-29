@@ -1,8 +1,7 @@
-package it.unicam.cs.mpgc.rpg130718.model;
+package it.unicam.cs.mpgc.rpg130718.model.oggetti;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Inventario {
     private List<Oggetto> oggetti;

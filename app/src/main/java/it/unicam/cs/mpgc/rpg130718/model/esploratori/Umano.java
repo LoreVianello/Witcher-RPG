@@ -1,19 +1,22 @@
-package it.unicam.cs.mpgc.rpg130718.model;
+package it.unicam.cs.mpgc.rpg130718.model.esploratori;
 
-public class Witcher extends Esploratore {
+import it.unicam.cs.mpgc.rpg130718.model.mostri.Debolezza;
+import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
 
-    // Il Witcher si ricorda se il nemico attuale è vulnerabile a Yrden
+public class Umano extends Esploratore {
+
+    // L'Umano si ricorda se il nemico attuale è vulnerabile all'Argento
     private boolean buffAttivo;
 
-    public Witcher(String nome) {
+    public Umano(String nome) {
         super(nome, 100, 20);
     }
 
     @Override
     public void entraInBattaglia(Mostro avversario) {
-        System.out.print(getNome() + " usa il Segno Yrden! ");
+        System.out.print(getNome() + " usa la Spada d'Argento! ");
 
-        if (avversario.getDebolezza() == Debolezza.SEGNO_YRDEN) {
+        if (avversario.getDebolezza() == Debolezza.ARGENTO) {
             System.out.println("Il mostro è debole! Danni raddoppiati.");
             this.buffAttivo = true;
         } else {

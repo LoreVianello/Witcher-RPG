@@ -1,4 +1,7 @@
-package it.unicam.cs.mpgc.rpg130718.model;
+package it.unicam.cs.mpgc.rpg130718.model.oggetti;
+
+import it.unicam.cs.mpgc.rpg130718.model.esploratori.Esploratore;
+import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
 
 public interface Oggetto {
     String getNome();

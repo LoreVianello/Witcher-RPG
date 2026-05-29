@@ -1,4 +1,10 @@
-package it.unicam.cs.mpgc.rpg130718.model;
+package it.unicam.cs.mpgc.rpg130718.model.combattimento;
+
+import it.unicam.cs.mpgc.rpg130718.model.esploratori.Esploratore;
+import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
+import it.unicam.cs.mpgc.rpg130718.model.oggetti.Oggetto;
+import it.unicam.cs.mpgc.rpg130718.model.oggetti.OlioNecrofagi;
+import it.unicam.cs.mpgc.rpg130718.model.oggetti.PozioneCura;
 
 public class Combattimento {
     private Esploratore esploratore;
