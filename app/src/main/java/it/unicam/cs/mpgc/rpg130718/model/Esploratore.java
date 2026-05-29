@@ -5,13 +5,16 @@ public abstract class Esploratore {
     private int puntiVita;
     private int puntiVitaMax;
     private int dannoBase;
+    private Inventario inventario;
     private Bestiario bestiario;
+    private Oggetto buffAttivo;
 
     public Esploratore(String nome, int puntiVitaMax, int dannoBase) {
         this.nome = nome;
         this.puntiVitaMax = puntiVitaMax;
         this.puntiVita = puntiVitaMax;
         this.dannoBase = dannoBase;
+        this.inventario = new Inventario();
         this.bestiario = new Bestiario();
     }
 
@@ -31,8 +34,24 @@ public abstract class Esploratore {
         return dannoBase;
     }
 
+    public Inventario getInventario() {
+        return inventario;
+    }
+
     public Bestiario getBestiario() {
         return bestiario;
+    }
+
+    public Oggetto getBuffAttivo() {
+        return buffAttivo;
+    }
+
+    public void setBuffAttivo(Oggetto buff) {
+        this.buffAttivo = buff;
+    }
+
+    public void resetBuff() {
+        this.buffAttivo = null;
     }
 
     public abstract void entraInBattaglia(Mostro avversario);
@@ -56,5 +75,15 @@ public abstract class Esploratore {
 
     public boolean isVivo() {
         return this.puntiVita > 0;
+    }
+
+    public void usaOggetto(String nomeOggetto) {
+        Oggetto oggettoDaUsare = inventario.consumaOggetto(nomeOggetto);
+
+        if (oggettoDaUsare != null) {
+            oggettoDaUsare.usa(this);
+        } else {
+            System.out.println("Non hai " + nomeOggetto + " nell'inventario.");
+        }
     }
 }

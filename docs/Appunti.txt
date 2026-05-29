@@ -36,13 +36,21 @@ dei danni a metodi astratti implementati dalle specifiche sottoclassi. Questo el
 costrutti if/else nella classe Combattimento per l'identificazione del tipo di eroe, mantenendo il codice pulito e il
 sistema facilmente estendibile con nuove classi.
 
-Oggetto
-- nome
-- effetto
+Oggetto (Interfaccia)
++ getNome()
++ usa(Esploratore)
++ applicaBuffCombattimento(int, Mostro)
+--> PozioneCura, OlioNecrofagi
+Scelta architetturale (Strategy Pattern e Open/Closed Principle): Ho trasformato Oggetto in un'interfaccia polimorfica.
+Ogni oggetto definisce autonomamente come applicare il proprio effetto sull'Esploratore o nel calcolo dei danni.
+Questo approccio elimina i code smell legati a enormi switch/if e permette di aggiungere infiniti nuovi oggetti in
+futuro senza mai dover modificare il codice delle classi Esploratore, Inventario o Combattimento.
 
 Inventario
-+ aggiungiOggetto()
-+ usaOggetto()
+- oggetti
++ aggiungiOggetto(Oggetto)
++ consumaOggetto(String)
++ mostraInventario()
 
 DataLoader
 + caricaCatalogoGlobale()
