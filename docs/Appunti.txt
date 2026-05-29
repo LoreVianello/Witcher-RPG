@@ -25,11 +25,16 @@ Esploratore (Classe Astratta)
 - dannoBase
 - inventario
 - bestiario
+- buffAttivo (Oggetto)
 + entraInBattaglia(Mostro) [Astratto]
 + eseguiAttacco() [Astratto]
 + subisciDanno(int)
 + cura(int)
 + isVivo()
++ usaOggetto(String)
++ setBuffAttivo(Oggetto)
++ getBuffAttivo()
++ resetBuff()
 --> Witcher (Yrden), Strega (Incantesimo), Bardo (Cura), Umano (Argento)
 Scelta architetturale (Polimorfismo e Open/Closed Principle): Ho delegato l'inizializzazione dello scontro e il calcolo
 dei danni a metodi astratti implementati dalle specifiche sottoclassi. Questo elimina la dipendenza da complessi
@@ -52,10 +57,6 @@ Inventario
 + consumaOggetto(String)
 + mostraInventario()
 
-DataLoader
-+ caricaCatalogoGlobale()
-+ salvaProgressi()
-
 Combattimento
 - esploratore
 - mostro
@@ -63,6 +64,20 @@ Combattimento
 Scelta di Design e Flusso: Il combattimento si risolve in automatico sfruttando le chiamate polimorfiche.
 Se l'esploratore vince, la classe Combattimento si occupa autonomamente di iniettare il Mostro sconfitto nel Bestiario
 dell'eroe, garantendo la rigida separazione delle responsabilità. In caso di sconfitta, è Game Over.
+
+GestoreDati (Package utils)
+- gson: Gson
++ caricaCatalogoMostri(): List<Mostro>
++ salvaPartita(Esploratore)
++ caricaPartita(): Esploratore
+Scelta architetturale (Persistenza e SRP): Lettura e scrittura confinate in questa classe per rispettare il
+Single Responsibility Principle. L'I/O utilizza BufferedReader e BufferedWriter per massimizzare le prestazioni.
+
+EsploratoreAdapter e OggettoAdapter (Package utils)
+Scelta architetturale (Polimorfismo, Gson e OCP): Per salvare e ricaricare gerarchie polimorfiche con Gson,
+sono stati implementati JsonSerializer e JsonDeserializer personalizzati. Per evitare costrutti switch e rispettare
+l'Open/Closed Principle, la deserializzazione risolve la classe concreta dinamicamente tramite la Reflection nativa di
+Java (Class.forName) a partire da un'etichetta aggiunta in fase di salvataggio.
 
 Flusso di Gioco (Game Loop)
 1. Inizio: Creazione o caricamento partita. Scelta della classe Esploratore.
