@@ -5,8 +5,9 @@ import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
 
 public class Strega extends Esploratore {
 
-    // La Strega si ricorda se il nemico attuale è vulnerabile a Incantesimo
-    private boolean buffAttivo;
+    // Tiene conto se l'avversario è debole all'abilità
+    // Transient serve a evitare che Gson salvi questa variabile nel file JSON
+    private transient boolean abilitaAttiva;
 
     public Strega(String nome) {
         super(nome, 90, 25);
@@ -18,16 +19,16 @@ public class Strega extends Esploratore {
 
         if (avversario.getDebolezza() == Debolezza.INCANTESIMO) {
             System.out.println("Il mostro è debole! Danni raddoppiati.");
-            this.buffAttivo = true;
+            this.abilitaAttiva = true;
         } else {
             System.out.println("Ma non succede niente.");
-            this.buffAttivo = false;
+            this.abilitaAttiva = false;
         }
     }
 
     @Override
     public int eseguiAttacco() {
         // Se il buff è attivo infligge il doppio, altrimenti danno base
-        return buffAttivo ? (getDannoBase() * 2) : getDannoBase();
+        return abilitaAttiva ? (getDannoBase() * 2) : getDannoBase();
     }
 }

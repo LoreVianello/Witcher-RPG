@@ -81,4 +81,27 @@ public class GestoreDati {
             return null;
         }
     }
+
+    /**
+     * Verifica se è presente un file di salvataggio.
+     */
+    public boolean esisteSalvataggio() {
+        File file = new File(FILE_SALVATAGGIO);
+        return file.exists();
+    }
+
+    /**
+     * Cancella fisicamente il file di salvataggio in caso di Game Over o Vittoria,
+     * impedendo al giocatore di ricaricare una partita conclusa.
+     */
+    public void cancellaSalvataggio() {
+        File file = new File(FILE_SALVATAGGIO);
+        if (file.exists()) {
+            if (file.delete()) {
+                System.out.println("Salvataggio rimosso dal disco (Partita conclusa).");
+            } else {
+                System.err.println("Errore: impossibile rimuovere il salvataggio.");
+            }
+        }
+    }
 }
