@@ -8,21 +8,21 @@
   },
   {
     "nome": "Strige",
-    "puntiVita": 120,
-    "danno": 25,
+    "puntiVita": 100,
+    "danno": 20,
     "categoria": "MALEDETTO",
     "debolezza": "INCANTESIMO"
   },
   {
     "nome": "Selkiemore",
-    "puntiVita": 150,
-    "danno": 30,
+    "puntiVita": 110,
+    "danno": 22,
     "categoria": "VESTIGIA",
     "debolezza": "ARGENTO"
   },
   {
     "nome": "Krallach",
-    "puntiVita": 60,
+    "puntiVita": 50,
     "danno": 10,
     "categoria": "NECROFAGO",
     "debolezza": "OLIO_NECROFAGI"
@@ -30,14 +30,14 @@
   {
     "nome": "Doppler",
     "puntiVita": 70,
-    "danno": 20,
+    "danno": 15,
     "categoria": "VESTIGIA",
     "debolezza": "ARGENTO"
   },
   {
     "nome": "Jinn",
-    "puntiVita": 200,
-    "danno": 40,
+    "puntiVita": 120,
+    "danno": 25,
     "categoria": "MALEDETTO",
     "debolezza": "SEGNO_YRDEN"
   }

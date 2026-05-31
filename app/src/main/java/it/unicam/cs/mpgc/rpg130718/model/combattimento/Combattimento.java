@@ -9,28 +9,36 @@ import it.unicam.cs.mpgc.rpg130718.model.oggetti.PozioneCura;
 public class Combattimento {
     private Esploratore esploratore;
     private Mostro mostro;
+    private Mostro nemico;
 
     public Combattimento(Esploratore esploratore, Mostro mostro) {
         this.esploratore = esploratore;
         this.mostro = mostro;
+        this.nemico = new Mostro(
+                mostro.getNome(),
+                mostro.getPuntiVita(),
+                mostro.getDanno(),
+                mostro.getCategoria(),
+                mostro.getDebolezza()
+        );
     }
 
     public boolean autoRisolvi() {
         System.out.println("\n--- INIZIA LO SCONTRO ---");
-        esploratore.entraInBattaglia(mostro);
+        esploratore.entraInBattaglia(nemico);
 
-        while (esploratore.isVivo() && mostro.isVivo()) {
+        while (esploratore.isVivo() && nemico.isVivo()) {
 
             int dannoEroe = esploratore.eseguiAttacco();
 
             if (esploratore.getBuffAttivo() != null) {
-                dannoEroe = esploratore.getBuffAttivo().applicaBuffCombattimento(dannoEroe, mostro);
+                dannoEroe = esploratore.getBuffAttivo().applicaBuffCombattimento(dannoEroe, nemico);
             }
 
-            mostro.subisciDanno(dannoEroe);
+            nemico.subisciDanno(dannoEroe);
 
-            if (mostro.isVivo()) {
-                esploratore.subisciDanno(mostro.getDanno());
+            if (nemico.isVivo()) {
+                esploratore.subisciDanno(nemico.getDanno());
             }
         }
 

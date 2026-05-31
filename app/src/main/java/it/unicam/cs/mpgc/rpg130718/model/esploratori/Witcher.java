@@ -10,7 +10,7 @@ public class Witcher extends Esploratore {
     private transient boolean abilitaAttiva;
 
     public Witcher(String nome) {
-        super(nome, 100, 20);
+        super(nome, 100, 25);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class Witcher extends Esploratore {
         System.out.print(getNome() + " usa il Segno Yrden! ");
 
         if (avversario.getDebolezza() == Debolezza.SEGNO_YRDEN) {
-            System.out.println("Il mostro è debole! Danni raddoppiati.");
+            System.out.println("Il mostro e' debole! Danni raddoppiati.");
             this.abilitaAttiva = true;
         } else {
             System.out.println("Ma non succede niente.");

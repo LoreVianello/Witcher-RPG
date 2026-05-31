@@ -10,7 +10,7 @@ public class Umano extends Esploratore {
     private transient boolean abilitaAttiva;
 
     public Umano(String nome) {
-        super(nome, 100, 20);
+        super(nome, 130, 20);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class Umano extends Esploratore {
         System.out.print(getNome() + " usa la Spada d'Argento! ");
 
         if (avversario.getDebolezza() == Debolezza.ARGENTO) {
-            System.out.println("Il mostro è debole! Danni raddoppiati.");
+            System.out.println("Il mostro e' debole! Danni raddoppiati.");
             this.abilitaAttiva = true;
         } else {
             System.out.println("Ma non succede niente.");

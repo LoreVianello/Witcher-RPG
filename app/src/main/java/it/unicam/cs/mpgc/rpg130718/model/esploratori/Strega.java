@@ -10,7 +10,7 @@ public class Strega extends Esploratore {
     private transient boolean abilitaAttiva;
 
     public Strega(String nome) {
-        super(nome, 90, 25);
+        super(nome, 80, 35);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class Strega extends Esploratore {
         System.out.print(getNome() + " usa l'Incantesimo! ");
 
         if (avversario.getDebolezza() == Debolezza.INCANTESIMO) {
-            System.out.println("Il mostro è debole! Danni raddoppiati.");
+            System.out.println("Il mostro e' debole! Danni raddoppiati.");
             this.abilitaAttiva = true;
         } else {
             System.out.println("Ma non succede niente.");

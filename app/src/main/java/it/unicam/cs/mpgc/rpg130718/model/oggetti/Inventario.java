@@ -10,6 +10,10 @@ public class Inventario {
         this.oggetti = new ArrayList<>();
     }
 
+    public List<Oggetto> getOggetti() {
+        return this.oggetti;
+    }
+
     public void aggiungiOggetto(Oggetto oggetto) {
         this.oggetti.add(oggetto);
         System.out.println("Ottenuto: " + oggetto.getNome());

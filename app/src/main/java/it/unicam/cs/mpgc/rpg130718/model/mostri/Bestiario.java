@@ -12,6 +12,19 @@ public class Bestiario {
         this.indiceCorrente = 0;
     }
 
+    /**
+     * Verifica se un determinato mostro è già stato registrato nel bestiario.
+     * Il controllo viene fatto sul nome per garantire la compatibilità con i salvataggi.
+     */
+    public boolean haScoperto(Mostro mostro) {
+        return mostriScoperti.stream()
+                .anyMatch(m -> m.getNome().equals(mostro.getNome()));
+    }
+
+    public int getNumeroMostriScoperti() {
+        return this.mostriScoperti.size();
+    }
+
     public void aggiungiMostro(Mostro mostro) {
         // Evitiamo di inserire cloni dello stesso mostro
         if (!mostriScoperti.contains(mostro)) {
