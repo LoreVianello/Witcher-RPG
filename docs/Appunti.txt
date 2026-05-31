@@ -13,6 +13,7 @@ Bestiario
 - mostriScoperti
 - indiceCorrente
 + aggiungiMostro(Mostro)
++ haScoperto(Mostro)
 + getMostroCorrente()
 + mostroSuccessivo()
 + mostroPrecedente()
@@ -60,8 +61,13 @@ Inventario
 Combattimento
 - esploratore
 - mostro
+- nemico
 + autoRisolvi()
-Scelta di Design e Flusso: Il combattimento si risolve in automatico sfruttando le chiamate polimorfiche.
+Scelta di Design e Gestione della Memoria (Clonazione vs Riferimento): Per prevenire il bug della persistenza
+degli HP a 0 nel salvataggio, il costruttore utilizza l'operatore `new` per istanziare un `nemico` (clone).
+L'esploratore combatte contro il clone, permettendo di registrare il `mostro` (passato per riferimento e rimasto
+intatto) all'interno del Bestiario a fine scontro.
+Flusso: Il combattimento si risolve in automatico sfruttando le chiamate polimorfiche.
 Se l'esploratore vince, la classe Combattimento si occupa autonomamente di iniettare il Mostro sconfitto nel Bestiario
 dell'eroe, garantendo la rigida separazione delle responsabilità. In caso di sconfitta, è Game Over.
 
@@ -70,6 +76,8 @@ GestoreDati (Package utils)
 + caricaCatalogoMostri(): List<Mostro>
 + salvaPartita(Esploratore)
 + caricaPartita(): Esploratore
++ esisteSalvataggio(): boolean
++ cancellaSalvataggio()
 Scelta architetturale (Persistenza e SRP): Lettura e scrittura confinate in questa classe per rispettare il
 Single Responsibility Principle. L'I/O utilizza BufferedReader e BufferedWriter per massimizzare le prestazioni.
 
