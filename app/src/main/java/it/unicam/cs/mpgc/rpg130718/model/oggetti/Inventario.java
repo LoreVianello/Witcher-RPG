@@ -14,9 +14,9 @@ public class Inventario {
         return this.oggetti;
     }
 
-    public void aggiungiOggetto(Oggetto oggetto) {
+    public String aggiungiOggetto(Oggetto oggetto) {
         this.oggetti.add(oggetto);
-        System.out.println("Ottenuto: " + oggetto.getNome());
+        return "Ottenuto: " + oggetto.getNome();
     }
 
     public Oggetto consumaOggetto(String nomeOggetto) {

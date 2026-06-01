@@ -14,15 +14,14 @@ public class Strega extends Esploratore {
     }
 
     @Override
-    public void entraInBattaglia(Mostro avversario) {
-        System.out.print(getNome() + " usa l'Incantesimo! ");
-
+    public String entraInBattaglia(Mostro avversario) {
+        String log = getNome() + " usa l'Incantesimo! ";
         if (avversario.getDebolezza() == Debolezza.INCANTESIMO) {
-            System.out.println("Il mostro e' debole! Danni raddoppiati.");
             this.abilitaAttiva = true;
+            return log + "Il mostro è debole! Danni raddoppiati.";
         } else {
-            System.out.println("Ma non succede niente.");
             this.abilitaAttiva = false;
+            return log + "Ma non succede niente.";
         }
     }
 

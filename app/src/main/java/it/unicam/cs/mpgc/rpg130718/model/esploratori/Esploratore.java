@@ -59,7 +59,7 @@ public abstract class Esploratore {
         this.buffAttivo = null;
     }
 
-    public abstract void entraInBattaglia(Mostro avversario);
+    public abstract String entraInBattaglia(Mostro avversario);
 
     public abstract int eseguiAttacco();
 
@@ -82,13 +82,12 @@ public abstract class Esploratore {
         return this.puntiVita > 0;
     }
 
-    public void usaOggetto(String nomeOggetto) {
+    public String usaOggetto(String nomeOggetto) {
         Oggetto oggettoDaUsare = inventario.consumaOggetto(nomeOggetto);
-
         if (oggettoDaUsare != null) {
-            oggettoDaUsare.usa(this);
+            return oggettoDaUsare.usa(this);
         } else {
-            System.out.println("Non hai " + nomeOggetto + " nell'inventario.");
+            return "Non hai " + nomeOggetto + " nell'inventario.";
         }
     }
 }

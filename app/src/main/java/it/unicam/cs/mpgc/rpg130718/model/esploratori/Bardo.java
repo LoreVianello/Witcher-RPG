@@ -9,8 +9,8 @@ public class Bardo extends Esploratore {
     }
 
     @Override
-    public void entraInBattaglia(Mostro avversario) {
-        System.out.println(getNome() + " intona un Canto Soave! Si curera' ad ogni attacco.");
+    public String entraInBattaglia(Mostro avversario) {
+        return getNome() + " intona un Canto Soave! Si curerà ad ogni attacco.";
     }
 
     @Override
