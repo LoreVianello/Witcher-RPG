@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg130718.model.esploratori;
 
+import it.unicam.cs.mpgc.rpg130718.model.mostri.Debolezza;
 import it.unicam.cs.mpgc.rpg130718.model.oggetti.Inventario;
 import it.unicam.cs.mpgc.rpg130718.model.oggetti.Oggetto;
 import it.unicam.cs.mpgc.rpg130718.model.mostri.Bestiario;
@@ -14,11 +15,21 @@ public abstract class Esploratore {
     private Bestiario bestiario;
     private Oggetto buffAttivo;
 
-    public Esploratore(String nome, int puntiVitaMax, int dannoBase) {
+    // Campi per generalizzare le abilità
+    // Transient serve a evitare che Gson salvi queste variabili nel file JSON
+    protected transient boolean abilitaAttiva;
+    protected String nomeAbilita;
+    protected Debolezza debolezzaTarget;
+    protected int moltiplicatoreAbilita;
+
+    public Esploratore(String nome, int puntiVitaMax, int dannoBase, String nomeAbilita, Debolezza debolezzaTarget, int moltiplicatoreAbilita) {
         this.nome = nome;
         this.puntiVitaMax = puntiVitaMax;
         this.puntiVita = puntiVitaMax;
         this.dannoBase = dannoBase;
+        this.nomeAbilita = nomeAbilita;
+        this.debolezzaTarget = debolezzaTarget;
+        this.moltiplicatoreAbilita = moltiplicatoreAbilita;
         this.inventario = new Inventario();
         this.bestiario = new Bestiario();
     }
@@ -59,9 +70,32 @@ public abstract class Esploratore {
         this.buffAttivo = null;
     }
 
-    public abstract String entraInBattaglia(Mostro avversario);
+    public String entraInBattaglia(Mostro mostro) {
+        this.abilitaAttiva = false;
 
-    public abstract int eseguiAttacco();
+        // Se il mostro ha la debolezza contro l'esploratore con la giusta abilità
+        if (debolezzaTarget != null && mostro.getDebolezza() == debolezzaTarget) {
+            this.abilitaAttiva = true;
+            return nome + " sfrutta la debolezza del mostro attivando " + nomeAbilita + "!";
+        }
+        return nome + " si prepara al combattimento.";
+    }
+
+    public int eseguiAttacco(Mostro bersaglio) {
+        int dannoCalcolato = dannoBase;
+
+        // Applica il moltiplicatore dell'abilità di classe (se attiva)
+        if (abilitaAttiva) {
+            dannoCalcolato = (dannoCalcolato * moltiplicatoreAbilita);
+        }
+
+        // Applica eventuali buff degli oggetti
+        if (buffAttivo != null) {
+            dannoCalcolato = buffAttivo.applicaBuffCombattimento(dannoCalcolato, bersaglio);
+        }
+
+        return dannoCalcolato;
+    }
 
     public void subisciDanno(int danno) {
         this.puntiVita -= danno;

@@ -30,7 +30,7 @@ public class Combattimento {
 
         while (esploratore.isVivo() && nemico.isVivo()) {
 
-            int dannoEroe = esploratore.eseguiAttacco();
+            int dannoEroe = esploratore.eseguiAttacco(nemico);
             if (esploratore.getBuffAttivo() != null) {
                 // Se il danno calcolato dal buff è maggiore, significa che l'oggetto è stato efficace
                 int dannoModificato = esploratore.getBuffAttivo().applicaBuffCombattimento(dannoEroe, nemico);
