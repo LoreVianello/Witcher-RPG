@@ -36,14 +36,14 @@ public class ForestaController {
         this.gestoreDati = gestoreDati;
         this.eroe = eroe;
         this.catalogoMostri = gestoreDati.caricaCatalogoMostri();
-        this.totaleMostri = gestoreDati.caricaCatalogoMostri().size();
+        this.totaleMostri = this.catalogoMostri.size();
 
         aggiornaStatistiche();
         txtLog.setText("Ti addentri nell'oscura Foresta di Brokilon...\nL'aria è pesante. Cosa vuoi fare?");
     }
 
     private void aggiornaStatistiche() {
-        lblStatistiche.setText(eroe.getNome() + " (" + eroe.getClass().getSimpleName() + ") - HP: "
+        lblStatistiche.setText(eroe.getNome() + " (" + eroe.getTitolo() + ") - HP: "
                 + eroe.getPuntiVita() + "/" + eroe.getPuntiVitaMax());
     }
 

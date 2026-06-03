@@ -8,6 +8,7 @@ import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
 
 public abstract class Esploratore {
     private String nome;
+    private String titolo;
     private int puntiVita;
     private int puntiVitaMax;
     private int dannoBase;
@@ -17,13 +18,14 @@ public abstract class Esploratore {
 
     // Campi per generalizzare le abilità
     // Transient serve a evitare che Gson salvi queste variabili nel file JSON
-    protected transient boolean abilitaAttiva;
-    protected String nomeAbilita;
-    protected Debolezza debolezzaTarget;
-    protected int moltiplicatoreAbilita;
+    private transient boolean abilitaAttiva;
+    private transient String nomeAbilita;
+    private transient Debolezza debolezzaTarget;
+    private transient int moltiplicatoreAbilita;
 
-    public Esploratore(String nome, int puntiVitaMax, int dannoBase, String nomeAbilita, Debolezza debolezzaTarget, int moltiplicatoreAbilita) {
+    public Esploratore(String nome, String titolo, int puntiVitaMax, int dannoBase, String nomeAbilita, Debolezza debolezzaTarget, int moltiplicatoreAbilita) {
         this.nome = nome;
+        this.titolo = titolo;
         this.puntiVitaMax = puntiVitaMax;
         this.puntiVita = puntiVitaMax;
         this.dannoBase = dannoBase;
@@ -36,6 +38,10 @@ public abstract class Esploratore {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getTitolo() {
+        return titolo;
     }
 
     public int getPuntiVita() {
@@ -70,12 +76,12 @@ public abstract class Esploratore {
         this.buffAttivo = null;
     }
 
-    public String entraInBattaglia(Mostro mostro) {
-        this.abilitaAttiva = false;
+    public void preparaBattaglia(Mostro mostro) {
+        this.abilitaAttiva = (debolezzaTarget != null && mostro.getDebolezza() == debolezzaTarget);
+    }
 
-        // Se il mostro ha la debolezza contro l'esploratore con la giusta abilità
-        if (debolezzaTarget != null && mostro.getDebolezza() == debolezzaTarget) {
-            this.abilitaAttiva = true;
+    public String getLogIngressoBattaglia() {
+        if (this.abilitaAttiva) {
             return nome + " sfrutta la debolezza del mostro attivando " + nomeAbilita + "!";
         }
         return nome + " si prepara al combattimento.";

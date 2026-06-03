@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg130718.model.combattimento;
 
 import it.unicam.cs.mpgc.rpg130718.model.esploratori.Esploratore;
 import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
+import it.unicam.cs.mpgc.rpg130718.model.oggetti.Buff;
 import it.unicam.cs.mpgc.rpg130718.model.oggetti.GeneratoreLoot;
 import it.unicam.cs.mpgc.rpg130718.model.oggetti.Oggetto;
 
@@ -26,18 +27,21 @@ public class Combattimento {
         StringBuilder logDiBattaglia = new StringBuilder();
         logDiBattaglia.append("--- INIZIA LO SCONTRO con un ").append(nemico.getNome()).append("! ---\n");
 
-        logDiBattaglia.append(esploratore.entraInBattaglia(nemico)).append("\n");
+        esploratore.preparaBattaglia(nemico);
+        logDiBattaglia.append(esploratore.getLogIngressoBattaglia()).append("\n");
 
         while (esploratore.isVivo() && nemico.isVivo()) {
 
             int dannoEroe = esploratore.eseguiAttacco(nemico);
             if (esploratore.getBuffAttivo() != null) {
-                // Se il danno calcolato dal buff è maggiore, significa che l'oggetto è stato efficace
-                int dannoModificato = esploratore.getBuffAttivo().applicaBuffCombattimento(dannoEroe, nemico);
-                if (dannoModificato > dannoEroe) {
-                    logDiBattaglia.append("-> Il tuo Buff ha reagito alla debolezza del mostro!\n");
+                if (esploratore.getBuffAttivo() instanceof Buff buff) {
+                    // Se il danno calcolato dal buff è maggiore, significa che l'oggetto è stato efficace
+                    int dannoModificato = buff.applicaBuffCombattimento(dannoEroe, nemico);
+                    if (dannoModificato > dannoEroe) {
+                        logDiBattaglia.append("-> Il tuo Buff ha reagito alla debolezza del mostro!\n");
+                    }
+                    dannoEroe = dannoModificato;
                 }
-                dannoEroe = dannoModificato;
             }
 
             nemico.subisciDanno(dannoEroe);

@@ -5,7 +5,7 @@ import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
 public class Bardo extends Esploratore {
 
     public Bardo(String nome) {
-        super(nome, 100, 20, "Canto Soave", null, 1);
+        super(nome, "Bardo", 100, 20, "Canto Soave", null, 1);
     }
 
     @Override
