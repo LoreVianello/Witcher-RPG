@@ -89,11 +89,6 @@ public abstract class Esploratore {
             dannoCalcolato = (dannoCalcolato * moltiplicatoreAbilita);
         }
 
-        // Applica eventuali buff degli oggetti
-        if (buffAttivo != null) {
-            dannoCalcolato = buffAttivo.applicaBuffCombattimento(dannoCalcolato, bersaglio);
-        }
-
         return dannoCalcolato;
     }
 
