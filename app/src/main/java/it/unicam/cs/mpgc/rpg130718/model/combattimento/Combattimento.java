@@ -38,7 +38,7 @@ public class Combattimento {
                     // Se il danno calcolato dal buff è maggiore, significa che l'oggetto è stato efficace
                     int dannoModificato = buff.applicaBuffCombattimento(dannoEroe, nemico);
                     if (dannoModificato > dannoEroe) {
-                        logDiBattaglia.append("-> Il tuo Buff ha reagito alla debolezza del mostro!\n");
+                        logDiBattaglia.append("-> Colpo critico: Il Buff ha reagito alla debolezza del mostro!\n");
                     }
                     dannoEroe = dannoModificato;
                 }

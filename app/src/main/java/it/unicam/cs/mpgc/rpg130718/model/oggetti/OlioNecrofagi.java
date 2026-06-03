@@ -4,7 +4,7 @@ import it.unicam.cs.mpgc.rpg130718.model.esploratori.Esploratore;
 import it.unicam.cs.mpgc.rpg130718.model.mostri.Debolezza;
 import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
 
-public class OlioNecrofagi implements Oggetto {
+public class OlioNecrofagi implements Buff {
     @Override
     public String getNome() {
         return "Olio per Necrofagi";
