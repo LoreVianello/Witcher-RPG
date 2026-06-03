@@ -29,7 +29,7 @@ public class Bestiario {
 
     public void aggiungiMostro(Mostro mostro) {
         // Evitiamo di inserire cloni dello stesso mostro
-        if (!mostriScoperti.contains(mostro)) {
+        if (!haScoperto(mostro)) {
             mostriScoperti.add(mostro);
         }
     }

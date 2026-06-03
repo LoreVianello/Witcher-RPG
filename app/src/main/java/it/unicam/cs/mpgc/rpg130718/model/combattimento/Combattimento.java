@@ -2,9 +2,8 @@ package it.unicam.cs.mpgc.rpg130718.model.combattimento;
 
 import it.unicam.cs.mpgc.rpg130718.model.esploratori.Esploratore;
 import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
+import it.unicam.cs.mpgc.rpg130718.model.oggetti.GeneratoreLoot;
 import it.unicam.cs.mpgc.rpg130718.model.oggetti.Oggetto;
-import it.unicam.cs.mpgc.rpg130718.model.oggetti.OlioNecrofagi;
-import it.unicam.cs.mpgc.rpg130718.model.oggetti.PozioneCura;
 
 public class Combattimento {
     private Esploratore esploratore;
@@ -54,7 +53,7 @@ public class Combattimento {
             logDiBattaglia.append("\nVittoria! I dati di ").append(mostro.getNome()).append(" sono stati registrati.\n");
             esploratore.getBestiario().aggiungiMostro(mostro);
 
-            Oggetto loot = (new java.util.Random().nextBoolean()) ? new PozioneCura() : new OlioNecrofagi();
+            Oggetto loot = GeneratoreLoot.generaDropCasuale();
             String messaggioLoot = esploratore.getInventario().aggiungiOggetto(loot);
 
             logDiBattaglia.append(messaggioLoot).append("\n");

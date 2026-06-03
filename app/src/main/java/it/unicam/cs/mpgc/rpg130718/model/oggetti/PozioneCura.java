@@ -19,4 +19,9 @@ public class PozioneCura implements Oggetto {
     public int applicaBuffCombattimento(int dannoAttuale, Mostro avversario) {
         return dannoAttuale; // La pozione non altera i danni in combattimento
     }
+
+    @Override
+    public Oggetto copia() {
+        return new PozioneCura();
+    }
 }

@@ -10,4 +10,5 @@ public interface Oggetto {
 
     // Azione passiva durante il combattimento (se l'oggetto è un buff)
     int applicaBuffCombattimento(int dannoAttuale, Mostro avversario);
+    Oggetto copia();
 }

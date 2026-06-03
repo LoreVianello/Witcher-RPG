@@ -24,4 +24,9 @@ public class OlioNecrofagi implements Oggetto {
         }
         return dannoAttuale;
     }
+
+    @Override
+    public Oggetto copia() {
+        return new OlioNecrofagi();
+    }
 }
