@@ -11,6 +11,7 @@ public class FineGiocoController {
 
     private GestoreFinestre gestoreFinestre;
     private Stage popupStage;
+    private static final String GAME_OVER = "GAME OVER";
 
     @FXML
     private Label lblTitolo;
@@ -24,7 +25,7 @@ public class FineGiocoController {
         lblSottotitolo.setText(sottotitolo);
 
         // Se l'esito è la sconfitta, il testo compare rosso, altrimenti dorato
-        if (titolo.equals("GAME OVER")) {
+        if (titolo.equals(GAME_OVER)) {
             lblTitolo.setTextFill(Color.RED);
         } else {
             lblTitolo.setTextFill(Color.GOLD);

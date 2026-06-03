@@ -10,7 +10,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ChoiceDialog;
 
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.List;
 import java.util.Random;
 
@@ -19,6 +22,7 @@ public class ForestaController {
     private GestoreFinestre gestoreFinestre;
     private GestoreDati gestoreDati;
     private Esploratore eroe;
+    private int totaleMostri;
 
     @FXML
     private Label lblStatistiche;
@@ -30,6 +34,7 @@ public class ForestaController {
         this.gestoreFinestre = gestoreFinestre;
         this.gestoreDati = gestoreDati;
         this.eroe = eroe;
+        this.totaleMostri = gestoreDati.caricaCatalogoMostri().size();
 
         aggiornaStatistiche();
         txtLog.setText("Ti addentri nell'oscura Foresta di Brokilon...\nL'aria è pesante. Cosa vuoi fare?");
@@ -64,19 +69,19 @@ public class ForestaController {
         if (!oggettiPosseduti.isEmpty()) {
 
             // Creiamo una lista di stringhe con i nomi degli oggetti + l'opzione "Non usare nulla"
-            List<String> nomiOggetti = new java.util.ArrayList<>();
+            List<String> nomiOggetti = new ArrayList<>();
             nomiOggetti.add("Non usare nulla");
             for (Oggetto o : oggettiPosseduti) {
                 nomiOggetti.add(o.getNome());
             }
 
             // Mostriamo una finestra a comparsa con menù a tendina
-            javafx.scene.control.ChoiceDialog<String> dialog = new javafx.scene.control.ChoiceDialog<>("Non usare nulla", nomiOggetti);
+            ChoiceDialog<String> dialog = new ChoiceDialog<>("Non usare nulla", nomiOggetti);
             dialog.setTitle("Scelta Oggetto");
             dialog.setHeaderText("Hai incontrato un " + scelta.getNome() + "!\nScegli un oggetto dal tuo inventario prima di attaccare:");
             dialog.setContentText("Oggetto:");
 
-            java.util.Optional<String> risultato = dialog.showAndWait();
+            Optional<String> risultato = dialog.showAndWait();
 
             // Se l'utente ha scelto qualcosa di diverso da "Non usare nulla"
             if (risultato.isPresent() && !risultato.get().equals("Non usare nulla")) {
@@ -98,7 +103,7 @@ public class ForestaController {
             return;
         }
 
-        if (eroe.getBestiario().getNumeroMostriScoperti() >= catalogo.size()) {
+        if (eroe.getBestiario().getNumeroMostriScoperti() >= totaleMostri) {
             gestoreDati.cancellaSalvataggio();
             gestoreFinestre.mostraSchermataFineGioco("VITTORIA!", "Incredibile! Hai registrato l'ultimo mostro e liberato la foresta.");
         }
@@ -107,7 +112,7 @@ public class ForestaController {
     @FXML
     public void onSalvaEsciClick(ActionEvent event) {
         // Salviamo solo se l'eroe è vivo e non ha già completato il bestiario
-        if (eroe.isVivo() && eroe.getBestiario().getNumeroMostriScoperti() < gestoreDati.caricaCatalogoMostri().size()) {
+        if (eroe.isVivo() && eroe.getBestiario().getNumeroMostriScoperti() < totaleMostri) {
             gestoreDati.salvaPartita(eroe);
         }
         gestoreFinestre.mostraMenuPrincipale();
