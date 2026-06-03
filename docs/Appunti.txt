@@ -99,3 +99,12 @@ dall'inventario prima dello scontro.
 Mostro e debolezza:
 Kikimora: SEGNO_YRDEN, Strige: OLIO_NECROFAGI, Selkiemore: ARGENTO, Krallach: INCANTESIMO, Doppler: ARGENTO,
 Jinn: SEGNO_YRDEN
+
+Architettura delle Finestre e Navigazione JavaFX
+1. MainApp: Estende Application e inizializza lo Stage principale.
+2. GestoreFinestre: Unica classe responsabile del caricamento dei file FXML e dello switch delle scene sullo Stage.
+Gestisce lo stato e implementa la Dependency Injection passando i riferimenti del modello e dell'eroe ai vari
+controller tramite metodi setter dedicati, evitando il code smell del Global State (variabili statiche globali).
+3. Finestre Pop-up Modali (Modality.APPLICATION_MODAL): Schermate come il Bestiario e la fine del gioco sono caricate
+come finestre figlie sovrapposte che congelano temporaneamente l'input della scena sottostante (Foresta), garantendo
+una navigazione fluida e pulita (KISS).

@@ -31,13 +31,4 @@ public class Inventario {
 
         return daConsumare;
     }
-
-    public void mostraInventario() {
-        if (oggetti.isEmpty()) {
-            System.out.println("L'inventario è vuoto.");
-        } else {
-            System.out.println("Inventario:");
-            oggetti.forEach(o -> System.out.println("- " + o.getNome()));
-        }
-    }
 }

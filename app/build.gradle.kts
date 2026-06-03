@@ -37,13 +37,13 @@ java {
 
 // Configurazione di JavaFX
 javafx {
-    version = "24.0.1" // La versione indicata nelle slide del professore, o usa "25"
+    version = "25.0.3"
     modules = listOf("javafx.controls", "javafx.fxml")
 }
 
 application {
     // Define the main class for the application.
-    mainClass = "it.unicam.cs.mpgc.rpg130718.Main"
+    mainClass = "it.unicam.cs.mpgc.rpg130718.MainApp"
 }
 
 tasks.named<Test>("test") {

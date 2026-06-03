@@ -35,11 +35,9 @@ public class GestoreDati {
             Mostro[] mostri = gson.fromJson(reader, Mostro[].class);
             List<Mostro> catalogo = new ArrayList<>(Arrays.asList(mostri));
 
-            System.out.println("Catalogo caricato: " + catalogo.size() + " mostri disponibili per l'avventura.");
             return catalogo;
 
         } catch (Exception e) {
-            System.err.println("Errore: impossibile leggere il file " + FILE_CATALOGO + ". " + e.getMessage());
             return new ArrayList<>();
         }
     }
@@ -52,10 +50,8 @@ public class GestoreDati {
 
             // Serializzazione completa dell'Esploratore e della sua classe tramite Gson e Adapter
             gson.toJson(eroe, Esploratore.class, writer);
-            System.out.println("Partita salvata con successo!");
 
         } catch (IOException e) {
-            System.err.println("Errore durante il salvataggio della partita: " + e.getMessage());
         }
     }
 
@@ -77,7 +73,6 @@ public class GestoreDati {
             return esploratore;
 
         } catch (Exception e) {
-            System.err.println("Errore durante il caricamento del salvataggio. Il file potrebbe essere corrotto.");
             return null;
         }
     }
@@ -98,9 +93,7 @@ public class GestoreDati {
         File file = new File(FILE_SALVATAGGIO);
         if (file.exists()) {
             if (file.delete()) {
-                System.out.println("Salvataggio rimosso dal disco (Partita conclusa).");
             } else {
-                System.err.println("Errore: impossibile rimuovere il salvataggio.");
             }
         }
     }
