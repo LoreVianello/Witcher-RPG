@@ -52,6 +52,7 @@ public class GestoreDati {
             gson.toJson(eroe, Esploratore.class, writer);
 
         } catch (IOException e) {
+            System.err.println("Errore: Impossibile salvare il file di salvataggio.");
         }
     }
 
@@ -92,8 +93,8 @@ public class GestoreDati {
     public void cancellaSalvataggio() {
         File file = new File(FILE_SALVATAGGIO);
         if (file.exists()) {
-            if (file.delete()) {
-            } else {
+            if (!file.delete()) {
+                System.err.println("Errore: Impossibile cancellare il file di salvataggio.");
             }
         }
     }

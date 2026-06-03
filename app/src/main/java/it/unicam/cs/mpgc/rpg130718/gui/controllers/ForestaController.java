@@ -22,6 +22,7 @@ public class ForestaController {
     private GestoreFinestre gestoreFinestre;
     private GestoreDati gestoreDati;
     private Esploratore eroe;
+    private List<Mostro> catalogoMostri;
     private int totaleMostri;
 
     @FXML
@@ -34,6 +35,7 @@ public class ForestaController {
         this.gestoreFinestre = gestoreFinestre;
         this.gestoreDati = gestoreDati;
         this.eroe = eroe;
+        this.catalogoMostri = gestoreDati.caricaCatalogoMostri();
         this.totaleMostri = gestoreDati.caricaCatalogoMostri().size();
 
         aggiornaStatistiche();
@@ -47,9 +49,8 @@ public class ForestaController {
 
     @FXML
     public void onCercaIncontroClick(ActionEvent event) {
-        List<Mostro> catalogo = gestoreDati.caricaCatalogoMostri();
         // Filtriamo per i mostri non ancora scoperti
-        List<Mostro> mostriDisponibili = catalogo.stream()
+        List<Mostro> mostriDisponibili = this.catalogoMostri.stream()
                 .filter(m -> !eroe.getBestiario().haScoperto(m))
                 .toList();
 
