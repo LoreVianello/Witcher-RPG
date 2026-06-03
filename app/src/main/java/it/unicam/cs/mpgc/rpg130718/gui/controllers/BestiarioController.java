@@ -55,7 +55,7 @@ public class BestiarioController {
                 "DEBOLEZZA: " + mostro.getDebolezza() + "\n\n" +
                 "PUNTI VITA BASE: " + mostro.getPuntiVita() + "\n" +
                 "DANNO BASE: " + mostro.getDanno() + "\n" +
-                "Numero: " + (indiceCorrente + 1) + " di " + mostriVisualizzati.size();
+                "Pagina: " + (indiceCorrente + 1) + " di " + mostriVisualizzati.size();
 
         lblDettagli.setText(dettagli);
 
