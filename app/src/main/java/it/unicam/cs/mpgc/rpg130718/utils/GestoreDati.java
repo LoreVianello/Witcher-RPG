@@ -33,9 +33,8 @@ public class GestoreDati {
     public List<Mostro> caricaCatalogoMostri() {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_CATALOGO))) {
             Mostro[] mostri = gson.fromJson(reader, Mostro[].class);
-            List<Mostro> catalogo = new ArrayList<>(Arrays.asList(mostri));
 
-            return catalogo;
+            return new ArrayList<>(Arrays.asList(mostri));
 
         } catch (Exception e) {
             return new ArrayList<>();
@@ -70,8 +69,7 @@ public class GestoreDati {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_SALVATAGGIO))) {
 
             // Deserializzazione completa dell'Esploratore e della sua classe tramite Gson e Adapter
-            Esploratore esploratore = gson.fromJson(reader, Esploratore.class);
-            return esploratore;
+            return gson.fromJson(reader, Esploratore.class);
 
         } catch (Exception e) {
             return null;

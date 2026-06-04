@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg130718.model.mostri;
 
 public enum Debolezza {
+    NESSUNA("Nessuna"),
     ARGENTO("Lama d'Argento"),
     SEGNO_YRDEN("Segno Yrden"),
     INCANTESIMO("Incantesimo"),

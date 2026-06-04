@@ -19,9 +19,9 @@ public abstract class Esploratore {
     // Campi per generalizzare le abilità
     // Transient serve a evitare che Gson salvi queste variabili nel file JSON
     private transient boolean abilitaAttiva;
-    private transient String nomeAbilita;
-    private transient Debolezza debolezzaTarget;
-    private transient int moltiplicatoreAbilita;
+    private String nomeAbilita;
+    private Debolezza debolezzaTarget;
+    private int moltiplicatoreAbilita;
 
     public Esploratore(String nome, String titolo, int puntiVitaMax, int dannoBase, String nomeAbilita, Debolezza debolezzaTarget, int moltiplicatoreAbilita) {
         this.nome = nome;

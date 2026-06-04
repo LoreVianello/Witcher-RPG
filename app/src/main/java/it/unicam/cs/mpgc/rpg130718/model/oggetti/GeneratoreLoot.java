@@ -5,6 +5,8 @@ import java.util.Random;
 
 public class GeneratoreLoot {
 
+    private GeneratoreLoot() {}
+
     // La lista che hai suggerito tu, contenente i "modelli base" (i prototipi)
     private static final List<Oggetto> PROTOTIPI = List.of(
             new PozioneCura(),

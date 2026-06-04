@@ -1,11 +1,12 @@
 package it.unicam.cs.mpgc.rpg130718.model.esploratori;
 
+import it.unicam.cs.mpgc.rpg130718.model.mostri.Debolezza;
 import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
 
 public class Bardo extends Esploratore {
 
     public Bardo(String nome) {
-        super(nome, "Bardo", 100, 20, "Canto Soave", null, 1);
+        super(nome, "Bardo", 100, 20, "Canto Soave", Debolezza.NESSUNA, 1);
     }
 
     @Override

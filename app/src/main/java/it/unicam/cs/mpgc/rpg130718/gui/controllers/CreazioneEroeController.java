@@ -3,6 +3,7 @@ package it.unicam.cs.mpgc.rpg130718.gui.controllers;
 import it.unicam.cs.mpgc.rpg130718.gui.GestoreFinestre;
 import it.unicam.cs.mpgc.rpg130718.model.esploratori.*;
 import it.unicam.cs.mpgc.rpg130718.utils.GestoreDati;
+import it.unicam.cs.mpgc.rpg130718.utils.TipoEsploratore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -38,7 +39,7 @@ public class CreazioneEroeController {
         String classeScelta = cmbClasse.getValue();
 
         // Nella Classe TipoEsploratore viene fatta la ricerca della classe tramite Stringa, evitando uno switch
-        Esploratore nuovoEroe = it.unicam.cs.mpgc.rpg130718.utils.TipoEsploratore.creaEroe(classeScelta, nomeInserito);
+        Esploratore nuovoEroe = TipoEsploratore.creaEroe(classeScelta, nomeInserito);
 
         gestoreFinestre.mostraForesta(nuovoEroe);
     }
