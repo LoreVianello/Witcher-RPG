@@ -24,6 +24,7 @@ public class ForestaController {
     private Esploratore eroe;
     private List<Mostro> catalogoMostri;
     private int totaleMostri;
+    private final Random random = new Random();
 
     @FXML
     private Label lblStatistiche;
@@ -61,50 +62,57 @@ public class ForestaController {
             return;
         }
 
-        Mostro scelta = mostriDisponibili.get(new Random().nextInt(mostriDisponibili.size()));
+        Mostro scelta = mostriDisponibili.get(random.nextInt(mostriDisponibili.size()));
         StringBuilder logIncontro = new StringBuilder();
         logIncontro.append("Un ").append(scelta.getNome()).append(" selvatico balza fuori dai cespugli!\n");
 
         // Controlliamo se l'esploratore ha degli oggetti nell'inventario
-        List<Oggetto> oggettiPosseduti = eroe.getInventario().getOggetti();
-        if (!oggettiPosseduti.isEmpty()) {
-
-            // Creiamo una lista di stringhe con i nomi degli oggetti + l'opzione "Non usare nulla"
-            List<String> nomiOggetti = new ArrayList<>();
-            nomiOggetti.add("Non usare nulla");
-            for (Oggetto o : oggettiPosseduti) {
-                nomiOggetti.add(o.getNome());
-            }
-
-            // Mostriamo una finestra a comparsa con menù a tendina
-            ChoiceDialog<String> dialog = new ChoiceDialog<>("Non usare nulla", nomiOggetti);
-            dialog.setTitle("Scelta Oggetto");
-            dialog.setHeaderText("Hai incontrato un " + scelta.getNome() + "!\nScegli un oggetto dal tuo inventario prima di attaccare:");
-            dialog.setContentText("Oggetto:");
-
-            Optional<String> risultato = dialog.showAndWait();
-
-            // Se l'utente ha scelto qualcosa di diverso da "Non usare nulla"
-            if (risultato.isPresent() && !risultato.get().equals("Non usare nulla")) {
-                String esitoOggetto = eroe.usaOggetto(risultato.get());
-                logIncontro.append(esitoOggetto).append("\n");
-            }
-        }
+        gestisciSceltaOggetto(scelta, logIncontro);
 
         Combattimento scontro = new Combattimento(eroe, scelta);
-        String reportScontro = scontro.autoRisolvi();
+        logIncontro.append(scontro.autoRisolvi());
 
-        logIncontro.append(reportScontro);
-        txtLog.setText(logIncontro.toString());
-        aggiornaStatistiche();
+        verificaEsitoScontro();
+    }
 
-        if (!eroe.isVivo()) {
-            gestoreDati.cancellaSalvataggio();
-            gestoreFinestre.mostraSchermataFineGioco("GAME OVER", "Sei caduto in battaglia... Il tuo viaggio finisce qui.");
+    /**
+     * Gestisce la finestra di dialogo per l'uso degli oggetti prima dello scontro.
+     */
+    private void gestisciSceltaOggetto(Mostro scelta, StringBuilder logIncontro) {
+        List<Oggetto> oggettiPosseduti = eroe.getInventario().getOggetti();
+
+        // Se l'inventario è vuoto, usciamo subito dal metodo
+        if (oggettiPosseduti.isEmpty()) {
             return;
         }
 
-        if (eroe.getBestiario().getNumeroMostriScoperti() >= totaleMostri) {
+        List<String> nomiOggetti = new ArrayList<>();
+        nomiOggetti.add("Non usare nulla");
+        for (Oggetto o : oggettiPosseduti) {
+            nomiOggetti.add(o.getNome());
+        }
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Non usare nulla", nomiOggetti);
+        dialog.setTitle("Scelta Oggetto");
+        dialog.setHeaderText("Hai incontrato un " + scelta.getNome() + "!\nScegli un oggetto dal tuo inventario prima di attaccare:");
+        dialog.setContentText("Oggetto:");
+
+        Optional<String> risultato = dialog.showAndWait();
+
+        if (risultato.isPresent() && !risultato.get().equals("Non usare nulla")) {
+            String esitoOggetto = eroe.usaOggetto(risultato.get());
+            logIncontro.append(esitoOggetto).append("\n");
+        }
+    }
+
+    /**
+     * Controlla le condizioni di Game Over e Vittoria post-scontro.
+     */
+    private void verificaEsitoScontro() {
+        if (!eroe.isVivo()) {
+            gestoreDati.cancellaSalvataggio();
+            gestoreFinestre.mostraSchermataFineGioco("GAME OVER", "Sei caduto in battaglia... Il tuo viaggio finisce qui.");
+        } else if (eroe.getBestiario().getNumeroMostriScoperti() >= totaleMostri) {
             gestoreDati.cancellaSalvataggio();
             gestoreFinestre.mostraSchermataFineGioco("VITTORIA!", "Incredibile! Hai registrato l'ultimo mostro e liberato la foresta.");
         }
