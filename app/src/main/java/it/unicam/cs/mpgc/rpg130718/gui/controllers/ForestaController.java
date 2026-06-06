@@ -70,6 +70,8 @@ public class ForestaController {
 
         Combattimento scontro = new Combattimento(eroe, scelta);
         logIncontro.append(scontro.autoRisolvi());
+        txtLog.setText(logIncontro.toString());
+        aggiornaStatistiche();
 
         verificaEsitoScontro();
     }
