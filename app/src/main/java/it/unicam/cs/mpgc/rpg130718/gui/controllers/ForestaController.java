@@ -66,7 +66,6 @@ public class ForestaController {
         StringBuilder logIncontro = new StringBuilder();
         logIncontro.append("Un ").append(scelta.getNome()).append(" selvatico balza fuori dai cespugli!\n");
 
-        // Controlliamo se l'esploratore ha degli oggetti nell'inventario
         gestisciSceltaOggetto(scelta, logIncontro);
 
         Combattimento scontro = new Combattimento(eroe, scelta);

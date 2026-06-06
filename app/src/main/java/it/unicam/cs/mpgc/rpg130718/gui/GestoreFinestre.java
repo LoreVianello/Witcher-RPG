@@ -12,6 +12,10 @@ import java.io.IOException;
 
 import static javafx.stage.Modality.APPLICATION_MODAL;
 
+/**
+ * Gestisce la navigazione tra le schermate e l'iniezione delle dipendenze nei controller.
+ * È il punto di ingresso unico per tutte le transizioni dell'interfaccia grafica.
+ */
 public class GestoreFinestre {
     private Stage stagePrincipale;
     private GestoreDati gestoreDati;
@@ -84,8 +88,8 @@ public class GestoreFinestre {
             FineGiocoController controller = loader.getController();
             controller.setDipendenze(this, titolo, sottotitolo);
 
-            // Creiamo una finestra a comparsa
             Stage popupStage = new Stage();
+
             // Serve a bloccare la finestra dietro al pop-up
             popupStage.initModality(APPLICATION_MODAL);
             popupStage.initOwner(stagePrincipale);

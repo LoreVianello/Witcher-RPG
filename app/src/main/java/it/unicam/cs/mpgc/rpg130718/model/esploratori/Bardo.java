@@ -11,7 +11,6 @@ public class Bardo extends Esploratore {
 
     @Override
     public int eseguiAttacco(Mostro bersaglio) {
-        // Passiamo il bersaglio alla classe madre
         int dannoInflitto = super.eseguiAttacco(bersaglio);
 
         this.cura(10);

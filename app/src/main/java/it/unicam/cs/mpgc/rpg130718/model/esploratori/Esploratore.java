@@ -6,6 +6,11 @@ import it.unicam.cs.mpgc.rpg130718.model.oggetti.Oggetto;
 import it.unicam.cs.mpgc.rpg130718.model.mostri.Bestiario;
 import it.unicam.cs.mpgc.rpg130718.model.mostri.Mostro;
 
+/**
+ * Rappresenta un esploratore giocabile.
+ * Le caratteristiche di classe (abilità, debolezza target, moltiplicatore)
+ * vengono definite dal costruttore di ogni sottoclasse, evitando duplicazione di logica.
+ */
 public abstract class Esploratore {
     private String nome;
     private String titolo;
@@ -76,6 +81,10 @@ public abstract class Esploratore {
         this.buffAttivo = null;
     }
 
+    /**
+     * Va chiamato prima di ogni scontro per determinare se l'abilità di classe è attiva.
+     * Imposta abilitaAttiva in base alla debolezza del mostro avversario.
+     */
     public void preparaBattaglia(Mostro mostro) {
         this.abilitaAttiva = (debolezzaTarget != null && mostro.getDebolezza() == debolezzaTarget);
     }
@@ -105,7 +114,6 @@ public abstract class Esploratore {
         }
     }
 
-    // Metodo per curarsi senza mai superare il limite massimo
     public void cura(int quantita) {
         this.puntiVita += quantita;
         if (this.puntiVita > this.puntiVitaMax) {

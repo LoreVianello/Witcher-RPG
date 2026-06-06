@@ -28,7 +28,7 @@ public class EsploratoreAdapter implements JsonSerializer<Esploratore>, JsonDese
         String percorsoCompleto = "it.unicam.cs.mpgc.rpg130718.model.esploratori." + tipoClasse;
 
         try {
-            // Cerca dinamicamente la classe giusta e la passala a Gson
+            // Cerca dinamicamente la classe giusta e la passa a Gson
             Class<?> classeCorretta = Class.forName(percorsoCompleto);
             return context.deserialize(jsonObject, classeCorretta);
 

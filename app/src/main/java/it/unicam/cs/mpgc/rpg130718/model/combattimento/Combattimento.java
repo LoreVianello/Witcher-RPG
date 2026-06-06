@@ -23,6 +23,10 @@ public class Combattimento {
         );
     }
 
+    /**
+     * Esegue automaticamente lo scontro turno per turno e restituisce
+     * un log testuale dell'intera battaglia da mostrare nella GUI.
+     */
     public String autoRisolvi() {
         StringBuilder logDiBattaglia = new StringBuilder();
         logDiBattaglia.append("--- INIZIA LO SCONTRO con un ").append(nemico.getNome()).append("! ---\n");
@@ -52,7 +56,6 @@ public class Combattimento {
 
         esploratore.resetBuff();
 
-        // Controllo Post-Battaglia
         if (esploratore.isVivo()) {
             logDiBattaglia.append("\nVittoria! I dati di ").append(mostro.getNome()).append(" sono stati registrati.\n");
             esploratore.getBestiario().aggiungiMostro(mostro);

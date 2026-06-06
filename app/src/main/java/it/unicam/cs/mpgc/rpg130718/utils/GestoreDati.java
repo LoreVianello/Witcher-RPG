@@ -47,7 +47,6 @@ public class GestoreDati {
     public void salvaPartita(Esploratore eroe) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_SALVATAGGIO))) {
 
-            // Serializzazione completa dell'Esploratore e della sua classe tramite Gson e Adapter
             gson.toJson(eroe, Esploratore.class, writer);
 
         } catch (IOException e) {
@@ -68,7 +67,6 @@ public class GestoreDati {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_SALVATAGGIO))) {
 
-            // Deserializzazione completa dell'Esploratore e della sua classe tramite Gson e Adapter
             return gson.fromJson(reader, Esploratore.class);
 
         } catch (Exception e) {

@@ -59,7 +59,7 @@ public class BestiarioController {
 
         lblDettagli.setText(dettagli);
 
-        // Disabilita i pulsati Precedente e Successivo in caso non ce ne siano
+        // Disabilita i pulsanti Precedente e Successivo in caso non ce ne siano
         btnPrecedente.setDisable(indiceCorrente == 0);
         btnSuccessivo.setDisable(indiceCorrente == mostriVisualizzati.size() - 1);
     }
