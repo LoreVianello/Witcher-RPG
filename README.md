@@ -37,7 +37,7 @@ cd Witcher-RPG
 
 ## 🤖 Uso di strumenti di AI
 
-Per lo sviluppo di questo progetto è stato utilizzato esclusivamente **Gemini 3.1 Pro (modello a ragionamento esteso)** come assistente per l'analisi del codice, il troubleshooting e l'approfondimento teorico (es. *Java Reflection*). 
+Per lo sviluppo di questo progetto è stato utilizzato esclusivamente **Gemini 3.1 Pro (modello a ragionamento esteso) di Google** come assistente per l'analisi del codice, il troubleshooting e l'approfondimento teorico (es. *Java Reflection*). 
 
 Il codice è stato interamente visionato, compreso e riscritto manualmente, mantenendo un intervento personale totale e un controllo completo sulle scelte architetturali.
 
